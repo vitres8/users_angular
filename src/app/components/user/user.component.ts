@@ -18,8 +18,6 @@ export class UserComponent {
 
   onRemoveUser(id: number): void {
       this.idUserEventEmitter.emit(id);
-    
-
   }
 
   onSelectedUser(user: User): void {

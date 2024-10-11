@@ -44,6 +44,7 @@ export class UserAppComponent implements OnInit {
     });
 
     this.userSelected = new User();
+    this.setOpen();
   }
 
   removeUser(id: number): void {
@@ -72,6 +73,7 @@ export class UserAppComponent implements OnInit {
 
   setSelectedUser(userRow: User): void {
     this.userSelected = {... userRow};
+    this.open = true;
   }
 
   setOpen() {
