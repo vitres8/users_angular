@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
   standalone: true,
   imports: [UserComponent, UserFormComponent],
   templateUrl: './user-app.component.html',
+  styleUrl: './user-app.component.css'
 
 })
 export class UserAppComponent implements OnInit {

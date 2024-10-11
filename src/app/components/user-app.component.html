@@ -4,21 +4,23 @@
         {{(open == true)? 'Cerrar': 'Crear Usuario'}}
     </button>
     <div class="row">
-        @if (open) {
-            <div class="col">
-                <user-form 
-                    [user]="userSelected"
-                    (newUserEventEmitter)="addUser($event)">
-                </user-form>
-            </div>
-        } @else {
-            <div class="col">
-                <user 
+        <div class="col">
+            <user 
                     [users]="users" 
                     (idUserEventEmitter)="removeUser($event)"
                     (selectedUserEventEmitter)="setSelectedUser($event)">
                 </user>
             </div>
-        }
-    </div>
+            
+        </div>
 </div>
+    
+@if (open) {
+    <div class="abrir-modal animacion fadeIn">
+        <user-form 
+            [user]="userSelected"
+            (newUserEventEmitter)="addUser($event)"
+            (openEventEmitter)="setOpen()">
+        </user-form>
+    </div>
+}
