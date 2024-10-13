@@ -33,6 +33,17 @@ export class UserAppComponent implements OnInit {
     this.service.findAll().subscribe( users => this.users = users);
     this.addUser();
     this.removeUser();
+    this.findUserById();
+  }
+
+  findUserById(){
+    this.sharingData.findUserByIdEventEmitter.subscribe( id => {
+
+      const user = this.users.find(user => user.id == id);
+
+      this.sharingData.selectUserEventEmitter.emit(user);
+      
+    })
   }
 
   addUser() {
@@ -68,7 +79,7 @@ export class UserAppComponent implements OnInit {
         if (result.isConfirmed) {
   
           this.users = this.users.filter( user => user.id != id);
-          this.router.navigate(['/user/create'], {skipLocationChange:true}).then(() => {
+          this.router.navigate(['/users/create'], {skipLocationChange:true}).then(() => {
             this.router.navigate(['/users'], {state: {users: this.users}});
           })
           
