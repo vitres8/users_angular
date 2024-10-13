@@ -60,7 +60,9 @@ export class UserAppComponent implements OnInit {
       confirmButtonText: "Si Eliminalo!"
     }).then((result) => {
       if (result.isConfirmed) {
+
         this.users = this.users.filter( user => user.id != id);
+        
         Swal.fire({
           title: "Eliminado!",
           text: "Tu Usuario ha sido Eliminado.",

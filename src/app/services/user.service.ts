@@ -13,7 +13,7 @@ export class UserService {
       name: 'Andres',
       lastname: 'Guzman',
       email: 'andres@gmail.com',
-      username: 'andres',
+      username: 'andreser',
       password: '12345'
     },
     {
@@ -21,8 +21,16 @@ export class UserService {
       name: 'Josefa',
       lastname: 'Doe',
       email: 'pepa.doe@gmail.com',
-      username: 'pepa',
-      password: '12345'
+      username: 'pepatita',
+      password: '4r3f34'
+    },
+    {
+      id:3,
+      name: 'Raul',
+      lastname: 'Medina',
+      email: 'raulmedina@gmail.com',
+      username: 'raulines',
+      password: '33d3dq'
     },
   ];
 
