@@ -2,20 +2,20 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { User } from '../models/user';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SharingDataService {
-
   private _newUserEventEmitter: EventEmitter<User> = new EventEmitter();
-  
+
   private _idUserEventEmitter = new EventEmitter();
 
   private _findUserByIdEventEmitter = new EventEmitter();
 
   private _selectUserEventEmitter = new EventEmitter();
 
+  private _errorsUserFormEventEmitter = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
   get newUserEventEmitter(): EventEmitter<User> {
     return this._newUserEventEmitter;
@@ -33,4 +33,7 @@ export class SharingDataService {
     return this._selectUserEventEmitter;
   }
 
+  get errorsUserFormEventEmitter() {
+    return this._errorsUserFormEventEmitter;
+  }
 }
