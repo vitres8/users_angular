@@ -8,9 +8,7 @@ import { User } from '../../models/user';
   imports: [RouterModule],
   templateUrl: './navbar.component.html',
 })
-
-
 export class NavbarComponent {
-
   @Input() users: User[] = [];
+  @Input() paginator = {};
 }
