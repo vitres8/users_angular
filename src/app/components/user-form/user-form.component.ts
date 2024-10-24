@@ -21,6 +21,7 @@ export class UserFormComponent implements OnInit {
   ) {
     this.user = new User();
   }
+
   ngOnInit(): void {
     this.sharingData.errorsUserFormEventEmitter.subscribe(
       (errors) => (this.errors = errors)

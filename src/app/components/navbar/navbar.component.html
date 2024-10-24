@@ -24,10 +24,27 @@
             Home-Lista de Usuarios</a
           >
         </li>
+        @if (admin) {
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/users/create']"> New Users</a>
+          <a class="nav-link" [routerLink]="['/users/create']">New Users</a>
         </li>
+        }
       </ul>
+    </div>
+    <div
+      class="collapse navbar-collapse justify-content-end"
+      id="navbarNavAuth"
+    >
+      <span class="nav-item nav-link mx-4">
+        @if (login.isAuth) {
+        {{ login.user.username }}
+        <button (click)="handlerLogout()" class="btn btn-outline-success">
+          Logout
+        </button>
+        } @else {
+        <a class="btn btn-outline-primary" [routerLink]="['/login']">Sing In</a>
+        }
+      </span>
     </div>
   </div>
 </nav>
