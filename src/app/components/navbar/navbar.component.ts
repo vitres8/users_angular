@@ -12,9 +12,6 @@ import { AuthService } from '../../services/auth.service';
 export class NavbarComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
-  @Input() users: User[] = [];
-  @Input() paginator = {};
-
   get login() {
     return this.authService.user;
     console.log(this.authService.user);

@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { User } from '../../models/user';
-import { SharingDataService } from '../../services/sharing-data.service';
-import { ActivatedRoute, Route } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { add, find, resetUser, update } from '../../store/users.actions';
 
 @Component({
   selector: 'user-form',
@@ -12,45 +13,39 @@ import { ActivatedRoute, Route } from '@angular/router';
 })
 export class UserFormComponent implements OnInit {
   user: User;
-
   errors: any = {};
 
   constructor(
-    private route: ActivatedRoute,
-    private sharingData: SharingDataService
+    private store: Store<{ users: any }>,
+    private route: ActivatedRoute
   ) {
     this.user = new User();
+    this.store.select('users').subscribe((state) => {
+      this.errors = state.errors;
+      this.user = { ...state.user };
+    });
   }
 
   ngOnInit(): void {
-    this.sharingData.errorsUserFormEventEmitter.subscribe(
-      (errors) => (this.errors = errors)
-    );
-
-    this.sharingData.selectUserEventEmitter.subscribe(
-      (user) => (this.user = user)
-    );
-
+    this.store.dispatch(resetUser());
     this.route.paramMap.subscribe((params) => {
       const id: number = +(params.get('id') || '0');
-
       if (id > 0) {
-        this.sharingData.findUserByIdEventEmitter.emit(id);
+        this.store.dispatch(find({ id }));
       }
     });
   }
 
   onSubmit(userForm: NgForm): void {
-    // if (userForm.valid) {
-    this.sharingData.newUserEventEmitter.emit(this.user);
-    console.log(this.user);
-    // }
-    // userForm.reset();
-    // userForm.resetForm();
+    if (this.user.id > 0) {
+      this.store.dispatch(update({ userUpdated: this.user }));
+    } else {
+      this.store.dispatch(add({ userNew: this.user }));
+    }
   }
 
   onClear(userForm: NgForm): void {
-    this.user = new User();
+    this.store.dispatch(resetUser());
     userForm.reset();
     userForm.resetForm();
   }
