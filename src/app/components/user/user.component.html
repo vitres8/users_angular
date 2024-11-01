@@ -1,3 +1,10 @@
+@if(loading){
+<div class="d-flex justify-content-center d-block">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+}@else {
 <h3 class="my-4">{{ title }}</h3>
 @if (admin) {
 <button class="btn btn-primary btn-sm my-3" [routerLink]="['/users/create']">
@@ -49,3 +56,4 @@
 }
 
 <paginator [paginator]="paginator" [url]="'/users/page'"></paginator>
+}
